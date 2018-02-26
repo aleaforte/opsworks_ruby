@@ -44,8 +44,8 @@ every_enabled_application do |application|
         Array.wrap(globals(:purge_before_symlink, application['shortname']))
       ).uniq
     )
-    # https://github.com/aws/opsworks-cookbooks/issues/129
     #symlink_before_migrate globals(:symlink_before_migrate, application['shortname'])
+    symlink_before_migrate({})
     symlinks(node['defaults']['global']['symlinks'].merge(globals(:symlinks, application['shortname']) || {}))
 
     scm.out.each do |scm_key, scm_value|
